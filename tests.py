@@ -1,16 +1,18 @@
-import matplotlib.pyplot as plt
-import numpy as np
+import time
+import winsound
 
-z = np.array([[0., 1., 0., 0.],
-       [0., 0., 1., 0.],
-       [0., 0., 0., 1.],
-       [0., 0., 0., 1.]])
-# z.itemsize()
-print(z.sum(0))
-# zHist = [[a + a1], [b + b1], [c + c1], [d + d1] for a, b, c, d in range(0, len(z))]
-zHist = z.sum(0)
-zz = ['clap', 'hiHat', 'kick', 'snare']
+fi = open("./models/ImageClassV1.hdf5", "rb").read()
+fi2 = open("./models/ImageClassVUnlocked.hdf5", "rb").read()
+winsound.Beep(500, 100)
+winsound.Beep(1000, 300)
 
-plt.bar(zz, height=zHist)
-# plt.hist(zHist)
-plt.show()
+print(fi)
+for i in range(0, len(fi)):
+    print(i)
+    if bytes(fi[i]) == bytes(fi2[i]):
+        print('same')
+    else:
+        print('different at line ', i+1)
+        winsound.Beep(1000, 100)
+        winsound.Beep(500, 300)
+        time.sleep(10)
